@@ -7,7 +7,7 @@ import {
   FlatList,
 } from 'react-native';
 import React from 'react';
-import CategoryList from './components/CategoryList';
+import CategoryList from '../../components/CategoryList';
 import FeaturedProductList from './components/FeaturedProductList';
 import LatestShoesList from './components/LatestShoesList';
 import {COLORS, FONTS, SIZES} from '../../common/Styles';
