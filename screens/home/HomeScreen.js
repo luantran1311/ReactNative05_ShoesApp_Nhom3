@@ -52,7 +52,7 @@ export default function HomeScreen({navigation}) {
       </Text>
 
       {/* Menu bar */}
-      <CategoryList />
+      <CategoryList navigationProps={navigation} />
 
       {/* Featured product */}
       <FeaturedProductList />
