@@ -1,6 +1,6 @@
 import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {COLORS, FONTS, SIZES} from '../../../common/Styles';
+import {COLORS, FONTS, SIZES} from '../common/Styles';
 
 const tempMenu = [
     {
