@@ -60,6 +60,7 @@ function renderMenuItems({item}) {
           color: COLORS.white,
           fontFamily: FONTS.boldFont,
           fontSize: FONTS.h6,
+          textTransform:'capitalize'
         }}>
         {item.category}
       </Text>
@@ -70,7 +71,6 @@ function renderMenuItems({item}) {
 export default function CategoryList() {
   return (
     <FlatList
-      style={{backgroundColor: 'red'}}
       horizontal
       data={tempMenu}
       keyExtractor={item => item.id}
