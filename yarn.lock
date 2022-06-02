@@ -1086,6 +1086,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@mindinventory/react-native-stagger-view@^1.1.0":
+  "integrity" "sha512-HvXSSt5QXJfM/IVkM88EyCsxr6xVOoJUlOs0GosPbuFW4pJL6N4PyVFGrqmzznFO1qg31opJjqsB0aish0bDzw=="
+  "resolved" "https://registry.npmjs.org/@mindinventory/react-native-stagger-view/-/react-native-stagger-view-1.1.0.tgz"
+  "version" "1.1.0"
+
 "@react-native-community/cli-debugger-ui@^7.0.3":
   "integrity" "sha512-G4SA6jFI0j22o+j+kYP8/7sxzbCDqSp2QiHA/X5E0lsGEd2o9qN2zbIjiFr8b8k+VVAYSUONhoC0+uKuINvmkA=="
   "resolved" "https://registry.npmjs.org/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-7.0.3.tgz"
