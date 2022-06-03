@@ -7,9 +7,13 @@ import {
   FlatList,
 } from 'react-native';
 import React from 'react';
-import {COLORS, FONTS, SIZES} from '../../common/Styles';
+import {COLORS, FONTS, SHADOWS, SIZES} from '../../common/Styles';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faTentArrowTurnLeft, faFilter, faHeart} from '@fortawesome/free-solid-svg-icons';
+import {
+  faXmark,
+  faSliders,
+  faHeart,
+} from '@fortawesome/free-solid-svg-icons';
 import StaggeredList from '@mindinventory/react-native-stagger-view';
 import {useNavigation} from '@react-navigation/native';
 import CategoryList from '../../components/CategoryList';
@@ -553,13 +557,21 @@ function CategoryHeader({navigation}) {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: SIZES.margin
+        padding: SIZES.margin * 2,
       }}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <FontAwesomeIcon style={{color:COLORS.white}} icon={faTentArrowTurnLeft} size={24} />
+        <FontAwesomeIcon
+          style={{color: COLORS.white}}
+          icon={faXmark}
+          size={24}
+        />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => console.log('filter pressed')}>
-        <FontAwesomeIcon style={{color:COLORS.white}} icon={faFilter} size={24} />
+        <FontAwesomeIcon
+          style={{color: COLORS.white}}
+          icon={faSliders}
+          size={24}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -569,44 +581,50 @@ function CategoryItems(props) {
   const item = props.item;
   const navigation = props.navigation;
   return (
-    // <View style={{width: '50%', padding: SIZES.margin / 2}}>
-    //   <TouchableOpacity
-    //     style={{backgroundColor: 'red'}}
-    //     onPress={() =>
-    //       navigation.navigate('Detail_Stack', {productId: item.id})
-    //     }>
-    //     <Text>Test</Text>
-    //   </TouchableOpacity>
-    // </View>
     <View
-    style={{
-      width: '50%', padding: SIZES.margin, borderColor:'#000', borderWidth:1, 
-    }}>
-    <TouchableOpacity
-      style={{backgroundColor: COLORS.white}}
-      onPress={() => navigation.navigate('Detail_Stack', {productId: item.id})}>
-      {/* wish list icon */}
-      <TouchableOpacity style={{position: 'absolute', right: 0, top: 0}}>
-        <FontAwesomeIcon icon={faHeart} />
-      </TouchableOpacity>
-      <Image style={{width: 200, height: 150}} source={{uri: item.image}} />
-
-      {/* product name */}
-      <Text
+      style={{
+        padding: SIZES.margin,
+      }}>
+      <View
         style={{
-          color: COLORS.primaryColor,
-          fontFamily: FONTS.boldFont,
-          fontSize: FONTS.h6,
-
+          backgroundColor: COLORS.white,
+          position: 'relative',
+          borderRadius: SIZES.radius,
+          padding: SIZES.margin,
+          ...SHADOWS
         }}>
-        {item.name}
-      </Text>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('Detail_Stack', {productId: item.id})
+          }>
+          {/* wish list icon */}
+          <TouchableOpacity style={{position: 'absolute', right: 0, top: 0}}>
+            <FontAwesomeIcon icon={faHeart} />
+          </TouchableOpacity>
+          <Image style={{width: 175, height: 175}} source={{uri: item.image}} />
 
-      {/* price */}
-      <Text style={{fontFamily: FONTS.mediumFont, color: COLORS.primaryColor, fontSize: FONTS.h6}}>${item.price.toFixed(2)}</Text>
+          {/* product name */}
+          <Text
+            style={{
+              color: COLORS.primaryColor,
+              fontFamily: FONTS.boldFont,
+              fontSize: FONTS.h6,
+            }}>
+            {item.name}
+          </Text>
 
-    </TouchableOpacity>
-  </View>
+          {/* price */}
+          <Text
+            style={{
+              fontFamily: FONTS.mediumFont,
+              color: COLORS.primaryColor,
+              fontSize: FONTS.h6,
+            }}>
+            ${item.price.toFixed(2)}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
@@ -614,12 +632,12 @@ export default function CategoryScreen({route, navigation}) {
   const categoryId = route.params.categoryId;
   return (
     <SafeAreaView
-    style={{
-      flex: 1,
-      paddingBottom: 60,
-      backgroundColor: COLORS.secondaryColor,
-      position: 'relative',
-    }}>
+      style={{
+        flex: 1,
+        paddingBottom: 60,
+        backgroundColor: COLORS.secondaryColor,
+        position: 'relative',
+      }}>
       <View
         style={{
           width: '100%',
@@ -640,24 +658,25 @@ export default function CategoryScreen({route, navigation}) {
       {/* header */}
       <CategoryHeader navigation={navigation} />
 
-            {/* Menu bar */}
-            <CategoryList />
+      {/* Menu bar */}
+      <CategoryList />
 
-      {/* <Text>CategoryScreen</Text>
-      <Text>Category name: {categoryId}</Text> */}
-      {/* <StaggeredList
-          data={tempProductByCategory}
-          animationType={'FADE_IN_FAST'}
-          renderItem={({item}) => renderCategoryItems(item)}
-      /> */}
-      <FlatList
+      {/* Product grid */}
+      <StaggeredList
+        data={tempProductByCategory}
+        animationType={'FADE_IN_FAST'}
+        renderItem={item => (
+          <CategoryItems item={item.item} navigation={navigation} />
+        )}
+      />
+      {/* <FlatList
         data={tempProductByCategory}
         keyExtractor={item => item.id}
         renderItem={item => (
           <CategoryItems item={item.item} navigation={navigation} />
         )}
         numColumns={2}
-      />
+      /> */}
     </SafeAreaView>
   );
 }
