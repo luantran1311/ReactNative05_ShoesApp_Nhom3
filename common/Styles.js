@@ -24,7 +24,7 @@ export const FONTS = {
 };
 
 export const SHADOWS = {
-  shadowColor: '#000',
+  shadowColor: "#000",
   shadowOffset: {
     width: 0,
     height: 2,
@@ -32,7 +32,4 @@ export const SHADOWS = {
   shadowOpacity: 0.25,
   shadowRadius: 3.84,
   elevation: 5,
-//   shadowColor: 'black',
-// shadowOpacity: 1,
-// elevation: 12,
 };
