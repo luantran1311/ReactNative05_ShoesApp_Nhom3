@@ -14,10 +14,11 @@ import {
   faSliders,
   faHeart,
 } from '@fortawesome/free-solid-svg-icons';
-import StaggeredList from '@mindinventory/react-native-stagger-view';
 import {useNavigation} from '@react-navigation/native';
 import CategoryList from '../../components/CategoryList';
 import Svg, {Path} from 'react-native-svg';
+import CategoryHeader from './components/CategoryHeader';
+import CategoryProductGrid from './components/CategoryProductGrid';
 
 const tempProductByCategory = [
   {
@@ -550,83 +551,6 @@ const tempProductByCategory = [
   },
 ];
 
-function CategoryHeader({navigation}) {
-  return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: SIZES.margin * 2,
-      }}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <FontAwesomeIcon
-          style={{color: COLORS.white}}
-          icon={faXmark}
-          size={24}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => console.log('filter pressed')}>
-        <FontAwesomeIcon
-          style={{color: COLORS.white}}
-          icon={faSliders}
-          size={24}
-        />
-      </TouchableOpacity>
-    </View>
-  );
-}
-
-function CategoryItems(props) {
-  const item = props.item;
-  const navigation = props.navigation;
-  return (
-    <View
-      style={{
-        padding: SIZES.margin,
-      }}>
-      <View
-        style={{
-          backgroundColor: COLORS.white,
-          position: 'relative',
-          borderRadius: SIZES.radius,
-          padding: SIZES.margin,
-          ...SHADOWS
-        }}>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate('Detail_Stack', {productId: item.id})
-          }>
-          {/* wish list icon */}
-          <TouchableOpacity style={{position: 'absolute', right: 0, top: 0}}>
-            <FontAwesomeIcon icon={faHeart} />
-          </TouchableOpacity>
-          <Image style={{width: 175, height: 175}} source={{uri: item.image}} />
-
-          {/* product name */}
-          <Text
-            style={{
-              color: COLORS.primaryColor,
-              fontFamily: FONTS.boldFont,
-              fontSize: FONTS.h6,
-            }}>
-            {item.name}
-          </Text>
-
-          {/* price */}
-          <Text
-            style={{
-              fontFamily: FONTS.mediumFont,
-              color: COLORS.primaryColor,
-              fontSize: FONTS.h6,
-            }}>
-            ${item.price.toFixed(2)}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-}
 
 export default function CategoryScreen({route, navigation}) {
   const categoryId = route.params.categoryId;
@@ -662,21 +586,15 @@ export default function CategoryScreen({route, navigation}) {
       <CategoryList />
 
       {/* Product grid */}
-      <StaggeredList
+      {/* <StaggeredList
         data={tempProductByCategory}
         animationType={'FADE_IN_FAST'}
+        showsHorizontalScrollIndicator={false}
         renderItem={item => (
           <CategoryItems item={item.item} navigation={navigation} />
         )}
-      />
-      {/* <FlatList
-        data={tempProductByCategory}
-        keyExtractor={item => item.id}
-        renderItem={item => (
-          <CategoryItems item={item.item} navigation={navigation} />
-        )}
-        numColumns={2}
       /> */}
+      <CategoryProductGrid data={tempProductByCategory} navigation={navigation} />
     </SafeAreaView>
   );
 }
