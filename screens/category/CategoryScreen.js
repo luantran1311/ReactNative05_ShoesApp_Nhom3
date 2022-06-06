@@ -665,6 +665,7 @@ export default function CategoryScreen({route, navigation}) {
       <StaggeredList
         data={tempProductByCategory}
         animationType={'FADE_IN_FAST'}
+        showsHorizontalScrollIndicator={false}
         renderItem={item => (
           <CategoryItems item={item.item} navigation={navigation} />
         )}

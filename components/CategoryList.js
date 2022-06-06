@@ -94,6 +94,7 @@ function MenuItems(props) {
 export default function CategoryList() {
   const navigation = useNavigation();
   return (
+    <View>
     <FlatList
       horizontal
       data={tempMenu}
@@ -102,5 +103,6 @@ export default function CategoryList() {
       )}
       keyExtractor={item => item.id}
     />
+    </View>
   );
 }
