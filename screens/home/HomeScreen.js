@@ -15,7 +15,11 @@ import {COLORS, FONTS, SIZES} from '../../common/Styles';
 import Svg, {Path} from 'react-native-svg';
 import BackgroundHeader from '../../components/BackgroundHeader';
 
+
 export default function HomeScreen({navigation}) {
+  
+  
+  
   return (
     <SafeAreaView
       style={{
