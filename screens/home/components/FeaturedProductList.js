@@ -70,7 +70,7 @@ export default function FeaturedProductList() {
   }, [])
   console.log(dataProduct)
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item }) => (
     <View
       style={{
         margin: SIZES.margin,
@@ -117,7 +117,7 @@ export default function FeaturedProductList() {
         <Text>{item.size}</Text>
       </TouchableOpacity>
     </View>
-  }
+  )
 
   return (
     <FlatList
