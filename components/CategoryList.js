@@ -1,8 +1,13 @@
-import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
-import {COLORS, FONTS, SIZES} from '../common/Styles';
-import {useNavigation, NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { COLORS, FONTS, SIZES } from '../common/Styles';
+import { useNavigation, NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { fetchProducts } from '../screens/home/HomeThunks';
+
+
+
 
 const tempMenu = [
   {
@@ -72,7 +77,7 @@ function MenuItems(props) {
   const navigation = props.navigation;
   return (
     <TouchableOpacity
-      style={{margin: SIZES.margin}}
+      style={{ margin: SIZES.margin }}
       onPress={() => {
         navigation.navigate('Category_Stack', {
           categoryId: item.category
@@ -95,14 +100,14 @@ export default function CategoryList() {
   const navigation = useNavigation();
   return (
     <View>
-    <FlatList
-      horizontal
-      data={tempMenu}
-      renderItem={item => (
-        <MenuItems navigation={navigation} item={item.item} />
-      )}
-      keyExtractor={item => item.id}
-    />
+      <FlatList
+        horizontal
+        data={tempMenu}
+        renderItem={item => (
+          <MenuItems navigation={navigation} item={item.item} />
+        )}
+        keyExtractor={item => item.id}
+      />
     </View>
   );
 }
