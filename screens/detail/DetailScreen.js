@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
+import { SafeAreaView, View, Text, Image, TouchableOpacity, FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 import {COLORS, FONTS, SIZES} from '../../common/Styles';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -74,11 +74,28 @@ const tempProduct = {
     ]
   }
 
+  var styles = StyleSheet.create({
+    linearGradient: {
+      flex: 1,
+      paddingLeft: 15,
+      paddingRight: 15,
+      borderRadius: 5
+    },
+    buttonText: {
+      fontSize: 18,
+      fontFamily: 'Gill Sans',
+      textAlign: 'center',
+      margin: 10,
+      color: '#ffffff',
+      backgroundColor: 'transparent',
+    },
+  });
+
 export default function DetailScreen({route, navigation}) {
   const productId = route.params.productId
   return (
-    <SafeAreaView>
-      <DetailHeader navigation={navigation} />
+    <SafeAreaView style={{backgroundColor:'#F0F4F7'}}>
+      <DetailHeader categoryName={tempProduct.categories[0].category} navigation={navigation} />
       <ProductCarousel imageList={tempProduct.image} />
       <ProductSwatch productInfo={tempProduct} />
     </SafeAreaView>

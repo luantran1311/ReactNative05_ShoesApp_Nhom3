@@ -6294,6 +6294,11 @@
   dependencies:
     "react-native-snap-carousel" "latest"
 
+"react-native-linear-gradient@^2.5.6":
+  "integrity" "sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg=="
+  "resolved" "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz"
+  "version" "2.5.6"
+
 "react-native-reanimated-carousel@^2.6.0":
   "integrity" "sha512-oWlj7HMOVGGivbUYq92mVjhcCUp3SwmeDtiL6vB6vtQwBUX9zGTL751Q1swx5yRB6jE4MHDuGgdWPZH9mElrTQ=="
   "resolved" "https://registry.npmjs.org/react-native-reanimated-carousel/-/react-native-reanimated-carousel-2.6.0.tgz"
@@ -6341,7 +6346,7 @@
     "css-select" "^4.2.1"
     "css-tree" "^1.0.0-alpha.39"
 
-"react-native@*", "react-native@> 0.57", "react-native@>=0.50.0", "react-native@>=0.59", "react-native@>=0.6.0", "react-native@0.68.2":
+"react-native@*", "react-native@> 0.57", "react-native@>=0.50.0", "react-native@>=0.55", "react-native@>=0.59", "react-native@>=0.6.0", "react-native@0.68.2":
   "integrity" "sha512-qNMz+mdIirCEmlrhapAtAG+SWVx6MAiSfCbFNhfHqiqu1xw1OKXdzIrjaBEPihRC2pcORCoCHduHGQe/Pz9Yuw=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.68.2.tgz"
   "version" "0.68.2"

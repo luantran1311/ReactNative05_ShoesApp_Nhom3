@@ -5,9 +5,54 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
+  ScrollView
 } from 'react-native';
 import React from 'react';
-import {COLORS, FONTS, SHADOWS, SIZES} from '../../../common/Styles';
+import {
+  COLORS,
+  FONTS,
+  PRODUCT_DETAIL_SWATCH_SHADOW,
+  SIZES,
+} from '../../../common/Styles';
+import {fullStar, halfStar, emptyStar} from '../../../common/Images';
+
+function Rating({score}) {
+  let stars = [];
+
+  const integerPart = Math.floor(score);
+  const decimalPart = score - integerPart;
+  const zeroPart = Math.floor(5 - score);
+
+  for (var i = 0; i < integerPart; i++) {
+    stars.push(fullStar);
+  }
+
+  for (var i = 0; i < decimalPart; i++) {
+    stars.push(halfStar);
+  }
+
+  for (var i = 0; i < zeroPart; i++) {
+    stars.push(emptyStar);
+  }
+
+  return (
+    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <View style={{flexDirection: 'row'}}>
+        {stars.map((item, index) => (
+          <Image source={item} style={{width: 20, height: 20}} />
+        ))}
+      </View>
+      <Text
+        style={{
+          marginLeft: SIZES.margin,
+          fontFamily: FONTS.mediumFont,
+          fontSize: FONTS.h6,
+        }}>
+        {score}
+      </Text>
+    </View>
+  );
+}
 
 function SizeItem(item) {
   return (
@@ -34,7 +79,14 @@ function SizeItem(item) {
 export default function ProductSwatch(props) {
   const productInfo = props.productInfo;
   return (
-    <View>
+    <View
+      style={{
+        ...PRODUCT_DETAIL_SWATCH_SHADOW,
+        backgroundColor: COLORS.white,
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
+        padding: SIZES.margin
+      }}>
       {/* Product main info */}
       <View>
         <Text
@@ -42,13 +94,14 @@ export default function ProductSwatch(props) {
             fontFamily: FONTS.boldFont,
             fontSize: FONTS.h2,
             color: COLORS.primaryColor,
+            marginBottom: SIZES.margin,
           }}>
           {productInfo.name}
         </Text>
         <View
           style={{
             flexDirection: 'row',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-start',
             alignItems: 'center',
           }}>
           <Text
@@ -56,10 +109,12 @@ export default function ProductSwatch(props) {
               fontFamily: FONTS.mediumFont,
               fontSize: FONTS.h6,
               textTransform: 'capitalize',
+              marginRight: SIZES.margin,
             }}>
             {productInfo.categories[0].category}
           </Text>
-          <Text>Rating</Text>
+          {/* <Text>Rating</Text> */}
+          <Rating score={3.5} />
         </View>
 
         <View
@@ -67,6 +122,7 @@ export default function ProductSwatch(props) {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
+            marginTop: SIZES.margin,
           }}>
           <Text
             style={{
@@ -81,8 +137,13 @@ export default function ProductSwatch(props) {
       </View>
 
       {/* Size swatch */}
-      <View>
-        <Text style={{fontFamily: FONTS.boldFont, color: COLORS.primaryColor}}>
+      <View style={{marginVertical: SIZES.margin}}>
+        <Text
+          style={{
+            fontFamily: FONTS.boldFont,
+            color: COLORS.primaryColor,
+            marginBottom: SIZES.margin,
+          }}>
           Choose your size:
         </Text>
         <FlatList
@@ -93,12 +154,32 @@ export default function ProductSwatch(props) {
       </View>
 
       {/* Product description */}
-      <View>
-        <Text>{productInfo.description}</Text>
-        <Text>{productInfo.shortDescription}</Text>
+      <View
+        style={{
+          borderTopWidth: 1,
+          borderColor: COLORS.secondaryColor,
+        }}>
+        <Text
+          style={{
+            fontFamily: FONTS.boldFont,
+            fontSize: FONTS.h5,
+            color: COLORS.primaryColor,
+            marginTop: SIZES.margin * 2,
+            marginBottom: 0,
+          }}>
+          {productInfo.description}
+        </Text>
+        <Text
+          style={{
+            fontFamily: FONTS.mediumFont,
+            fontSize: FONTS.h6,
+            marginTop: 0,
+          }}>
+          {productInfo.shortDescription}
+        </Text>
       </View>
 
-      <View style={{padding: SIZES.margin*2}}>
+      <View style={{padding: SIZES.margin * 2}}>
         <TouchableOpacity
           style={{backgroundColor: COLORS.primaryColor}}
           onPress={() => console.log('add to bag pressed')}>

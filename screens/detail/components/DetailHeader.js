@@ -1,6 +1,6 @@
 import { View, TouchableOpacity, Text } from 'react-native'
 import React from 'react'
-import {COLORS, FONTS, SHADOWS, SIZES} from '../../../common/Styles';
+import {COLORS, FONTS, PRODUCT_CONTAINER_SHADOWS, SIZES} from '../../../common/Styles';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faXmark,
@@ -25,7 +25,7 @@ export default function DetailHeader(props) {
               size={24}
             />
           </TouchableOpacity>
-          <Text>{categoryName}</Text>
+          <Text style={{textTransform:'capitalize', fontFamily: FONTS.boldFont, fontSize:16, color: COLORS.primaryColor}}>{categoryName}</Text>
           <TouchableOpacity onPress={() => console.log('filter pressed')}>
             <FontAwesomeIcon
               style={{color: COLORS.primaryColor}}

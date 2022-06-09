@@ -1,6 +1,6 @@
 import { View, TouchableOpacity } from 'react-native'
 import React from 'react'
-import {COLORS, FONTS, SHADOWS, SIZES} from '../../../common/Styles';
+import {COLORS, FONTS, PRODUCT_CONTAINER_SHADOWS, SIZES} from '../../../common/Styles';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faXmark,

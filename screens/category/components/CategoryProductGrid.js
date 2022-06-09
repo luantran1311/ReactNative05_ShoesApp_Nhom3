@@ -1,13 +1,17 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import StaggeredList from '@mindinventory/react-native-stagger-view';
-import {COLORS, FONTS, SHADOWS, SIZES} from '../../../common/Styles';
+import {COLORS, FONTS, PRODUCT_CONTAINER_SHADOWS, SIZES} from '../../../common/Styles';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faXmark,
   faSliders,
   faHeart,
 } from '@fortawesome/free-solid-svg-icons';
+// import { emptyHeart, fullHeart } from '../../../assets/images'
+
+const emptyHeart = require('../../../assets/images/empty_heart.png')
+const fullHeart = require('../../../assets/images/full_heart.png')
 
 function CategoryItems(props) {
     const item = props.item;
@@ -23,7 +27,7 @@ function CategoryItems(props) {
             position: 'relative',
             borderRadius: SIZES.radius,
             padding: SIZES.margin,
-            ...SHADOWS
+            ...PRODUCT_CONTAINER_SHADOWS
           }}>
           <TouchableOpacity
             onPress={() =>
@@ -31,7 +35,7 @@ function CategoryItems(props) {
             }>
             {/* wish list icon */}
             <TouchableOpacity style={{position: 'absolute', right: 0, top: 0}}>
-              <FontAwesomeIcon icon={faHeart} />
+            <Image source={emptyHeart} style={{width: 16, height: 12}} />
             </TouchableOpacity>
             <Image style={{width: 175, height: 175}} source={{uri: item.image}} />
   
