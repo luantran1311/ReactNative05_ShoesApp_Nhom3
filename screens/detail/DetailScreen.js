@@ -79,37 +79,8 @@ export default function DetailScreen({route, navigation}) {
   return (
     <SafeAreaView>
       <DetailHeader navigation={navigation} />
-      <ProductCarousel />
-      <ProductSwatch />
-      {/* <Text>DetailScreen</Text>
-      <Text>Product id {productId}</Text>
-      <Text>Product name {tempProduct.name}</Text>
-      <Image source={{uri: tempProduct.image}} style={{width:40,height:40}} />
-      <Text>Product price {tempProduct.price}</Text>
-      <Text>Description {tempProduct.description}</Text>
-      <Text>Size</Text>
-      <FlatList 
-        data={tempProduct.size}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => <Text>{item} - </Text>}
-      />
-      <Text>Short description {tempProduct.shortDescription}</Text>
-      <Text>Qty {tempProduct.quantity}</Text>
-      <Text>Category</Text>
-      <FlatList 
-        data={tempProduct.categories}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => <Text>{item.category} - </Text>}
-      />
-      <Text>Related products</Text>
-      <FlatList 
-        data={tempProduct.relatedProducts}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => <Text>{item.name} - </Text>}
-      /> */}
+      <ProductCarousel imageList={tempProduct.image} />
+      <ProductSwatch productInfo={tempProduct} />
     </SafeAreaView>
   )
 }

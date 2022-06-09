@@ -68,10 +68,8 @@ export default function FeaturedProductList() {
   useEffect(() => {
     dispatch(fetchProducts())
   }, [])
-  console.log(dataProduct)
 
   const renderItem = ({ item }) => (
-    // console.log('item name', item.name)
     <View
       style={{
         margin: SIZES.margin,
@@ -120,7 +118,6 @@ export default function FeaturedProductList() {
     </View>
   )
 
-  console.log('dataProduct',dataProduct)
   return (
     <FlatList
       horizontal
