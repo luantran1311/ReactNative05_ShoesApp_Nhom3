@@ -23,7 +23,7 @@ export const FONTS = {
   text: 12,
 };
 
-export const SHADOWS = {
+export const PRODUCT_CONTAINER_SHADOWS = {
   shadowColor: "#000",
   shadowOffset: {
     width: 0,
@@ -33,3 +33,13 @@ export const SHADOWS = {
   shadowRadius: 3.84,
   elevation: 5,
 };
+
+export const PRODUCT_DETAIL_SWATCH_SHADOW = {
+  shadowRadius: 2,
+  shadowOffset: {
+    width: 0,
+    height: -3,
+  },
+  shadowColor: '#000000',
+  elevation: 4,
+}
