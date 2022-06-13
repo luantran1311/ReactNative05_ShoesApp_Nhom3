@@ -10,9 +10,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/home/HomeScreen';
-import CategoryScreen from '../screens/category/CategoryScreen';
 import CartScreen from '../screens/checkout/CartScreen';
 import LoginScreen from '../screens/account/LoginScreen';
+import SearchScreen from '../screens/search/SearchScreen';
 import {SIZES, COLORS, FONTS} from '../common/Styles';
 
 const Tab = createBottomTabNavigator();
@@ -45,7 +45,7 @@ export default function CustomBottomTabNavigator() {
 
       <Tab.Screen
         name="Search"
-        component={CategoryScreen}
+        component={SearchScreen}
         options={{
           tabBarIcon: () => (
             <FontAwesomeIcon
@@ -53,12 +53,13 @@ export default function CustomBottomTabNavigator() {
               icon={faMagnifyingGlass}
             />
           ),
+          headerShown: false,
         }}
       />
 
       <Tab.Screen
         name="Category"
-        component={CategoryScreen}
+        component={SearchScreen}
         options={{
           tabBarIcon: () => (
             <FontAwesomeIcon
@@ -79,6 +80,7 @@ export default function CustomBottomTabNavigator() {
               icon={faCartShopping}
             />
           ),
+          headerShown: false,
         }}
       />
 
@@ -92,6 +94,7 @@ export default function CustomBottomTabNavigator() {
               icon={faUser}
             />
           ),
+          headerShown: false,
         }}
       />
     </Tab.Navigator>
