@@ -9,6 +9,7 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import SearchMain from './SearchMain';
+import { useNavigation } from '@react-navigation/native';
 
 const tempProductSearchList = [
   {
@@ -163,6 +164,9 @@ function productSearch(query) {
 }
 
 export default function SearchBar() {
+
+  const navigation = useNavigation();
+
   const searchBarRef = useRef(null);
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -175,7 +179,7 @@ export default function SearchBar() {
       console.log('search query len', searchQuery.length);
       setProductSearchList(productSearch(searchQuery));
     }, 2000);
-  }, [productSearchList]);
+  }, [searchQuery]);
 
   return (
     <View>
@@ -192,6 +196,7 @@ export default function SearchBar() {
             style={{flex: 11, paddingHorizontal: SIZES.margin * 2}}
             onChangeText={newText => setSearchQuery(newText)}
             placeholder={'Type in your search keyword'}
+            ref={searchBarRef}
           />
           <TouchableOpacity
             style={{
@@ -208,7 +213,12 @@ export default function SearchBar() {
               borderRadius: SIZES.radius,
             }}
             onPress={() => {
-              setProductSearchList(productSearch(searchQuery));
+              // const productSearchList = productSearch(searchQuery)
+              // setProductSearchList(productSearchList);
+              navigation.navigate('Category_Stack', {
+                isSearchResultPage: true,
+                searchQuery: 'test'
+              })
             }}>
             <FontAwesomeIcon
               style={{color: COLORS.white}}
