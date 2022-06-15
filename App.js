@@ -44,8 +44,16 @@ export default function App() {
 
           <Stack.Screen name="Checkout_Stack" component={CategoryScreen} />
 
-          <Stack.Screen name="PasswordReset_Stack" component={PasswordResetScreen} />
-          <Stack.Screen name="Register_Stack" component={RegisterScreen} />
+          <Stack.Screen
+            options={{headerShown: false}}
+            name="PasswordReset_Stack"
+            component={PasswordResetScreen}
+          />
+          <Stack.Screen
+            options={{headerShown: false}}
+            name="Register_Stack"
+            component={RegisterScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
