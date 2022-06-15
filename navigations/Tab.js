@@ -14,6 +14,8 @@ import CartScreen from '../screens/checkout/CartScreen';
 import LoginScreen from '../screens/account/LoginScreen';
 import SearchScreen from '../screens/search/SearchScreen';
 import {SIZES, COLORS, FONTS} from '../common/Styles';
+import CategoryScreen from '../screens/category/CategoryScreen';
+import DetailScreen from '../screens/detail/DetailScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,9 +27,9 @@ export default function CustomBottomTabNavigator() {
           margin: SIZES.margin * 2,
           borderRadius: SIZES.radius,
           backgroundColor: COLORS.primaryColor,
-          position: 'absolute'
+          position: 'absolute',
         },
-        tabBarShowLabel: false
+        tabBarShowLabel: false,
       }}>
       <Tab.Screen
         name="Home"
@@ -59,7 +61,20 @@ export default function CustomBottomTabNavigator() {
 
       <Tab.Screen
         name="Category"
-        component={SearchScreen}
+        component={CategoryScreen}
+        options={{
+          tabBarIcon: () => (
+            <FontAwesomeIcon
+              style={{color: COLORS.secondaryColor}}
+              icon={faPlus}
+            />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Detail"
+        component={DetailScreen}
         options={{
           tabBarIcon: () => (
             <FontAwesomeIcon
