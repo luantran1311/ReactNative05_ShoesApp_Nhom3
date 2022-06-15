@@ -135,9 +135,6 @@ export default function LoginScreen() {
         style={styles.background__image}
         imageStyle={{opacity: 0.25}}>
 
-{/* header */}
-        <AccountHeader />
-
           {/* form content */}
         <View style={styles.wrapper}>
           <View style={styles.logo__wrapper}>
