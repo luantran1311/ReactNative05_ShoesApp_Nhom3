@@ -94,7 +94,7 @@ const tempProduct = {
 export default function DetailScreen({route, navigation}) {
   const productId = route.params.productId
   return (
-    <SafeAreaView style={{backgroundColor:'#F0F4F7'}}>
+    <SafeAreaView style={{backgroundColor:'#F0F4F7', flex: 1}}>
       <DetailHeader categoryName={tempProduct.categories[0].category} navigation={navigation} />
       <ProductCarousel imageList={tempProduct.image} />
       <ProductSwatch productInfo={tempProduct} />

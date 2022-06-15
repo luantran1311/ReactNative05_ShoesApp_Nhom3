@@ -5,7 +5,7 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import React from 'react';
 import {
@@ -79,120 +79,122 @@ function SizeItem(item) {
 export default function ProductSwatch(props) {
   const productInfo = props.productInfo;
   return (
-    <View
+    <ScrollView
       style={{
         ...PRODUCT_DETAIL_SWATCH_SHADOW,
         backgroundColor: COLORS.white,
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
-        padding: SIZES.margin
+        padding: SIZES.margin * 2,
       }}>
-      {/* Product main info */}
       <View>
-        <Text
-          style={{
-            fontFamily: FONTS.boldFont,
-            fontSize: FONTS.h2,
-            color: COLORS.primaryColor,
-            marginBottom: SIZES.margin,
-          }}>
-          {productInfo.name}
-        </Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-          }}>
+        {/* Product main info */}
+        <View>
           <Text
             style={{
-              fontFamily: FONTS.mediumFont,
-              fontSize: FONTS.h6,
-              textTransform: 'capitalize',
-              marginRight: SIZES.margin,
+              fontFamily: FONTS.boldFont,
+              fontSize: FONTS.h2,
+              color: COLORS.primaryColor,
+              marginBottom: SIZES.margin,
             }}>
-            {productInfo.categories[0].category}
+            {productInfo.name}
           </Text>
-          {/* <Text>Rating</Text> */}
-          <Rating score={3.5} />
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+            }}>
+            <Text
+              style={{
+                fontFamily: FONTS.mediumFont,
+                fontSize: FONTS.h6,
+                textTransform: 'capitalize',
+                marginRight: SIZES.margin,
+              }}>
+              {productInfo.categories[0].category}
+            </Text>
+            {/* <Text>Rating</Text> */}
+            <Rating score={3.5} />
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginTop: SIZES.margin,
+            }}>
+            <Text
+              style={{
+                fontFamily: FONTS.boldFont,
+                fontSize: FONTS.h4,
+                color: COLORS.primaryColor,
+              }}>
+              ${productInfo.price.toFixed(2)}
+            </Text>
+            <Text>Color</Text>
+          </View>
         </View>
 
+        {/* Size swatch */}
+        <View style={{marginVertical: SIZES.margin}}>
+          <Text
+            style={{
+              fontFamily: FONTS.boldFont,
+              color: COLORS.primaryColor,
+              marginBottom: SIZES.margin,
+            }}>
+            Choose your size:
+          </Text>
+          <FlatList
+            data={productInfo.size}
+            horizontal
+            renderItem={item => <SizeItem item={item.item} />}
+          />
+        </View>
+
+        {/* Product description */}
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: SIZES.margin,
+            borderTopWidth: 1,
+            borderColor: COLORS.secondaryColor,
           }}>
           <Text
             style={{
               fontFamily: FONTS.boldFont,
-              fontSize: FONTS.h4,
+              fontSize: FONTS.h5,
               color: COLORS.primaryColor,
+              marginTop: SIZES.margin * 2,
+              marginBottom: 0,
             }}>
-            ${productInfo.price.toFixed(2)}
+            {productInfo.description}
           </Text>
-          <Text>Color</Text>
-        </View>
-      </View>
-
-      {/* Size swatch */}
-      <View style={{marginVertical: SIZES.margin}}>
-        <Text
-          style={{
-            fontFamily: FONTS.boldFont,
-            color: COLORS.primaryColor,
-            marginBottom: SIZES.margin,
-          }}>
-          Choose your size:
-        </Text>
-        <FlatList
-          data={productInfo.size}
-          horizontal
-          renderItem={item => <SizeItem item={item.item} />}
-        />
-      </View>
-
-      {/* Product description */}
-      <View
-        style={{
-          borderTopWidth: 1,
-          borderColor: COLORS.secondaryColor,
-        }}>
-        <Text
-          style={{
-            fontFamily: FONTS.boldFont,
-            fontSize: FONTS.h5,
-            color: COLORS.primaryColor,
-            marginTop: SIZES.margin * 2,
-            marginBottom: 0,
-          }}>
-          {productInfo.description}
-        </Text>
-        <Text
-          style={{
-            fontFamily: FONTS.mediumFont,
-            fontSize: FONTS.h6,
-            marginTop: 0,
-          }}>
-          {productInfo.shortDescription}
-        </Text>
-      </View>
-
-      <View style={{padding: SIZES.margin * 2}}>
-        <TouchableOpacity
-          style={{backgroundColor: COLORS.primaryColor}}
-          onPress={() => console.log('add to bag pressed')}>
           <Text
             style={{
-              color: COLORS.white,
-              textAlign: 'center',
-              padding: SIZES.margin,
+              fontFamily: FONTS.mediumFont,
+              fontSize: FONTS.h6,
+              marginTop: 0,
             }}>
-            Add to bag
+            {productInfo.shortDescription}
           </Text>
-        </TouchableOpacity>
+        </View>
+
+        <View style={{padding: SIZES.margin * 2}}>
+          <TouchableOpacity
+            style={{backgroundColor: COLORS.primaryColor}}
+            onPress={() => console.log('add to bag pressed')}>
+            <Text
+              style={{
+                color: COLORS.white,
+                textAlign: 'center',
+                padding: SIZES.margin,
+              }}>
+              Add to bag
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
