@@ -15,6 +15,7 @@ import {faEnvelope, faLock, faSquareCheck, faSquare} from '@fortawesome/free-sol
 import {faSquare as regFaSquare} from '@fortawesome/free-regular-svg-icons';
 import {loginBackground} from '../../common/Images';
 import {useNavigation} from '@react-navigation/native';
+import AccountHeader from './components/AccountHeader';
 
 const styles = StyleSheet.create({
   dflex: {
@@ -133,6 +134,11 @@ export default function LoginScreen() {
         source={loginBackground}
         style={styles.background__image}
         imageStyle={{opacity: 0.25}}>
+
+{/* header */}
+        <AccountHeader />
+
+          {/* form content */}
         <View style={styles.wrapper}>
           <View style={styles.logo__wrapper}>
             <Image source={logo} style={styles.logo} />
@@ -153,7 +159,7 @@ export default function LoginScreen() {
           <View style={styles.account__actions}>
             <TouchableOpacity
               onPress={() => navigation.navigate('PasswordReset_Stack')}>
-              <Text style={styles.reset__pw__btn}>Reset your password now!</Text>
+              <Text style={styles.reset__pw__btn}>Reset your password!</Text>
             </TouchableOpacity>
           </View>
           {/* <View style={styles.account__actions}>
