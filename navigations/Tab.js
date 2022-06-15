@@ -19,7 +19,11 @@ import DetailScreen from '../screens/detail/DetailScreen';
 
 const Tab = createBottomTabNavigator();
 
-export default function CustomBottomTabNavigator() {
+export function CustomBottomTabNavigator() {
+  
+}
+
+export function HomeTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -58,33 +62,78 @@ export default function CustomBottomTabNavigator() {
           headerShown: false,
         }}
       />
-
+      
       <Tab.Screen
-        name="Category"
-        component={CategoryScreen}
+        name="My Bag"
+        component={CartScreen}
         options={{
           tabBarIcon: () => (
             <FontAwesomeIcon
               style={{color: COLORS.secondaryColor}}
-              icon={faPlus}
+              icon={faCartShopping}
             />
           ),
+          headerShown: false,
         }}
       />
 
       <Tab.Screen
-        name="Detail"
-        component={DetailScreen}
+        name="My Account"
+        component={LoginScreen}
         options={{
           tabBarIcon: () => (
             <FontAwesomeIcon
               style={{color: COLORS.secondaryColor}}
-              icon={faPlus}
+              icon={faUser}
             />
           ),
+          headerShown: false,
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+export function CategoryTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          margin: SIZES.margin * 2,
+          borderRadius: SIZES.radius,
+          backgroundColor: COLORS.primaryColor,
+          position: 'absolute',
+        },
+        tabBarShowLabel: false,
+      }} initialRouteName="Category">
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: () => (
+            <FontAwesomeIcon
+              style={{color: COLORS.secondaryColor}}
+              icon={faHome}
+            />
+          ),
+          headerShown: false,
         }}
       />
 
+      <Tab.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{
+          tabBarIcon: () => (
+            <FontAwesomeIcon
+              style={{color: COLORS.secondaryColor}}
+              icon={faMagnifyingGlass}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+      
       <Tab.Screen
         name="My Bag"
         component={CartScreen}

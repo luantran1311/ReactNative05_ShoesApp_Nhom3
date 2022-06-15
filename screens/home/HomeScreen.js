@@ -24,7 +24,6 @@ export default function HomeScreen({navigation}) {
     <SafeAreaView
       style={{
         flex: 1,
-        paddingBottom: 60,
         backgroundColor: COLORS.secondaryColor,
         position: 'relative',
       }}>
