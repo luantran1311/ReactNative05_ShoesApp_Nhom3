@@ -17,8 +17,6 @@ import Svg, {Path} from 'react-native-svg';
 
 export default function HomeScreen({navigation}) {
   
-  
-  
   return (
     <SafeAreaView
       style={{
