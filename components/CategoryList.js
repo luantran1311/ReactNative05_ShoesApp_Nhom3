@@ -18,7 +18,7 @@ export default function CategoryList() {
   const renderItemCategories = (item) => (
     <TouchableOpacity
       style={{ margin: SIZES.margin }}
-      onPress={() => dispatch(fetchProductsByCategoryId(item.id))
+      onPress={() => dispatch(fetchProductsByCategoryId({ id: item.id }))
       }
     >
       <Text

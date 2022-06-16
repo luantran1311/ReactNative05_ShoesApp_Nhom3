@@ -15,12 +15,19 @@ export const fetchProducts = createAsyncThunk(
         return json.content
     }
 )
-
+/*
+    - async (thamSoA, thunkAPI)
+    thunkAPI [object] : dispatch , getState()
+    truyền nhiều tham số thì sử dụng dạng object {
+        username: value,
+        password: value
+    }
+*/
 export const fetchProductsByCategoryId = createAsyncThunk(
     'products/fetchProductsByCategoryId',
-    async (categoryId) => {
-        console.log('kiểm tra fetch product by id')
-        const resp = await fetch(`http://svcy3.myclass.vn/api/Product/getProductByCategory?categoryId=${categoryId}`)
+    async (category,{dispatch,getState}) => {
+        console.log(getState())
+        const resp = await fetch(`http://svcy3.myclass.vn/api/Product/getProductByCategory?categoryId=${category.id}`)
         const json = await resp.json()
         return json.content
     }
