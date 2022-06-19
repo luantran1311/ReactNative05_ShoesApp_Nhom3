@@ -7,7 +7,7 @@ export const COLORS = {
   primaryColor: '#111014',
   secondaryColor: '#E6E5EC',
   white: '#fff',
-  active: '#333',
+  active: '#0e7afe',
 };
 
 export const FONTS = {
