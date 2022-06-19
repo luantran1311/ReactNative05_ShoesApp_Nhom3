@@ -7,6 +7,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { fetchProducts } from '../HomeThunks';
 // import { emptyHeart, fullHeart } from '../../../assets/images'
 
+
 const emptyHeart = require('../../../assets/images/empty_heart.png')
 const fullHeart = require('../../../assets/images/full_heart.png')
 
