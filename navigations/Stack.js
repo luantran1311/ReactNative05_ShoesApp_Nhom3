@@ -12,6 +12,9 @@ import CategoryScreen from '../screens/category/CategoryScreen';
 import DetailScreen from '../screens/detail/DetailScreen';
 import RegisterScreen from '../screens/account/RegisterScreen';
 import PasswordResetScreen from '../screens/account/PasswordResetScreen';
+import DashboardScreen from '../screens/account/DashboardScreen';
+import OrderScreen from '../screens/account/OrderScreen';
+import ProfileScreen from '../screens/account/ProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +51,9 @@ export function AccountStack() {
         <Stack.Screen name="Login_Stack" component={LoginScreen} />
         <Stack.Screen name="Register_Stack" component={RegisterScreen} />
         <Stack.Screen name="PasswordReset_Stack" component={PasswordResetScreen} />
+        <Stack.Screen name="Dashboard_Stack" component={DashboardScreen} />
+        <Stack.Screen name="Order_Stack" component={OrderScreen} />
+        <Stack.Screen name="Profile_Stack" component={ProfileScreen} />
       </Stack.Navigator>
     );
   }

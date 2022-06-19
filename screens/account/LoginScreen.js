@@ -9,9 +9,19 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {logo} from '../../common/Images';
-import {SIZES, COLORS, FONTS, PRODUCT_CONTAINER_SHADOWS} from '../../common/Styles';
+import {
+  SIZES,
+  COLORS,
+  FONTS,
+  PRODUCT_CONTAINER_SHADOWS,
+} from '../../common/Styles';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faEnvelope, faLock, faSquareCheck, faSquare} from '@fortawesome/free-solid-svg-icons';
+import {
+  faEnvelope,
+  faLock,
+  faSquareCheck,
+  faSquare,
+} from '@fortawesome/free-solid-svg-icons';
 import {faSquare as regFaSquare} from '@fortawesome/free-regular-svg-icons';
 import {loginBackground} from '../../common/Images';
 import {useNavigation} from '@react-navigation/native';
@@ -19,13 +29,13 @@ import AccountHeader from './components/AccountHeader';
 
 const styles = StyleSheet.create({
   dflex: {
-    flexDirection:'row',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent:'center'
+    justifyContent: 'center',
   },
   dcol: {
-    flexDirection:'column',
-    alignItems:'flex-start'
+    flexDirection: 'column',
+    alignItems: 'flex-start',
   },
   container: {
     flex: 1,
@@ -40,9 +50,9 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flex: 1,
-    justifyContent:'center',
-    alignItems:'center',
-    paddingHorizontal: SIZES.margin * 5
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: SIZES.margin * 5,
   },
   logo__wrapper: {
     height: 100,
@@ -50,7 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginBottom: SIZES.margin * 2
+    marginBottom: SIZES.margin * 2,
   },
   logo: {
     height: '100%',
@@ -60,7 +70,7 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   form__wrapper: {
     width: '100%',
@@ -72,7 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    ...PRODUCT_CONTAINER_SHADOWS
+    ...PRODUCT_CONTAINER_SHADOWS,
   },
   form__input__icon: {
     flex: 1,
@@ -84,25 +94,25 @@ const styles = StyleSheet.create({
   reset__pw__text: {
     fontFamily: FONTS.mediumFont,
     fontSize: FONTS.h6,
-    color: COLORS.primaryColor
+    color: COLORS.primaryColor,
   },
   reset__pw__btn: {
     fontFamily: FONTS.boldFont,
     fontSize: FONTS.h6,
     color: COLORS.primaryColor,
-    marginBottom: SIZES.margin * 5
+    marginBottom: SIZES.margin * 5,
   },
   remember__me: {
     fontFamily: FONTS.mediumFont,
     fontSize: FONTS.h6,
-    color: COLORS.primaryColor
+    color: COLORS.primaryColor,
   },
   btn: {
     backgroundColor: COLORS.primaryColor,
     borderRadius: SIZES.radius,
     width: '100%',
     marginBottom: SIZES.margin,
-    ...PRODUCT_CONTAINER_SHADOWS
+    ...PRODUCT_CONTAINER_SHADOWS,
   },
   btn__text: {
     color: COLORS.white,
@@ -110,14 +120,14 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontFamily: FONTS.boldFont,
     fontSize: FONTS.h6,
-    textAlign:'center'
+    textAlign: 'center',
   },
   btn__secondary: {
     backgroundColor: COLORS.white,
   },
   btn__text__secondary: {
     color: COLORS.primaryColor,
-  }
+  },
 });
 
 export default function LoginScreen() {
@@ -125,17 +135,16 @@ export default function LoginScreen() {
   const [rememberMe, setRememberMe] = useState(0);
 
   function toggleRememberMe() {
-    setRememberMe(!rememberMe)
+    setRememberMe(!rememberMe);
   }
-  
+
   return (
     <View style={styles.container}>
       <ImageBackground
         source={loginBackground}
         style={styles.background__image}
         imageStyle={{opacity: 0.25}}>
-
-          {/* form content */}
+        {/* form content */}
         <View style={styles.wrapper}>
           <View style={styles.logo__wrapper}>
             <Image source={logo} style={styles.logo} />
@@ -150,7 +159,11 @@ export default function LoginScreen() {
             </View>
             <View style={styles.form__input}>
               <FontAwesomeIcon style={styles.form__input__icon} icon={faLock} />
-              <TextInput secureTextEntry={true} style={styles.form__input__text} placeholder="Password" />
+              <TextInput
+                secureTextEntry={true}
+                style={styles.form__input__text}
+                placeholder="Password"
+              />
             </View>
           </View>
           <View style={styles.account__actions}>
@@ -166,14 +179,19 @@ export default function LoginScreen() {
             </TouchableOpacity>
           </View> */}
           <View style={styles.account__actions}>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => navigation.navigate('Dashboard_Stack')}>
               <Text style={styles.btn__text}>Sign In</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.account__actions}>
-            <TouchableOpacity style={[styles.btn, styles.btn__secondary]}
+            <TouchableOpacity
+              style={[styles.btn, styles.btn__secondary]}
               onPress={() => navigation.navigate('Register_Stack')}>
-              <Text style={[styles.btn__text, styles.btn__text__secondary]}>Sign Up</Text>
+              <Text style={[styles.btn__text, styles.btn__text__secondary]}>
+                Sign Up
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
