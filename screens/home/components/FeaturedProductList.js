@@ -1,10 +1,15 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { COLORS, FONTS, SHADOWS, SIZES } from '../../../common/Styles';
+import { COLORS, FONTS, PRODUCT_CONTAINER_SHADOWS, SIZES } from '../../../common/Styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { fetchProducts } from '../HomeThunks';
+// import { emptyHeart, fullHeart } from '../../../assets/images'
+
+
+const emptyHeart = require('../../../assets/images/empty_heart.png')
+const fullHeart = require('../../../assets/images/full_heart.png')
 
 export default function FeaturedProductList() {
 
@@ -14,7 +19,6 @@ export default function FeaturedProductList() {
   useEffect(() => {
     dispatch(fetchProducts())
   }, [])
-  // console.log(dataProduct)
 
   const renderItem = ({ item }) => (
     <View
@@ -24,7 +28,8 @@ export default function FeaturedProductList() {
         position: 'relative',
         backgroundColor: COLORS.white,
         borderRadius: SIZES.radius,
-        width: 220
+        width: 220,
+        ...PRODUCT_CONTAINER_SHADOWS
       }}>
       <TouchableOpacity
         style={{
@@ -40,7 +45,7 @@ export default function FeaturedProductList() {
         onPress={() => console.log('renderFeaturedItems pressed')}>
         {/* wish list icon */}
         <TouchableOpacity style={{ position: 'absolute', right: 0, top: 0 }}>
-          <FontAwesomeIcon icon={faHeart} />
+          <Image source={emptyHeart} style={{width: 16, height: 12}} />
         </TouchableOpacity>
         <Image style={{ width: 200, height: 150 }} source={{ uri: item.image }} />
 

@@ -21,6 +21,8 @@ target 'ReactNative05_ShoesApp_Nhom3' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'ReactNative05_ShoesApp_Nhom3Tests' do
     inherit! :complete
     # Pods for testing
