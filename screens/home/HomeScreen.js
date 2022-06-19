@@ -18,8 +18,6 @@ import BackgroundHeader from '../../components/BackgroundHeader';
 
 export default function HomeScreen({navigation}) {
   
-  
-  
   return (
     <SafeAreaView
       style={{
