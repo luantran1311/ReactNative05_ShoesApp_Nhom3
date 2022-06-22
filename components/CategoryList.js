@@ -13,13 +13,16 @@ export default function CategoryList() {
   useEffect(() => {
     dispatch(fetchCategories())
   }, [])
-  console.log(dataCategories)
+  //console.log(dataCategories)
 
   const renderItemCategories = (item) => (
     <TouchableOpacity
       style={{ margin: SIZES.margin }}
-      onPress={() => dispatch(fetchProductsByCategoryId({ id: item.id }))
-      }
+      onPress={() => {
+        navigation.navigate('Category_Stack', {
+          categoryId: item.category
+        });
+      }}
     >
       <Text
         style={{
