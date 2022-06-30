@@ -15,6 +15,7 @@ import PasswordResetScreen from '../screens/account/PasswordResetScreen';
 import DashboardScreen from '../screens/account/DashboardScreen';
 import OrderScreen from '../screens/account/OrderScreen';
 import ProfileScreen from '../screens/account/ProfileScreen';
+import OrderSuccessScreen from '../screens/checkout/OrderSuccessScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +42,8 @@ export function CartStack() {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Cart_Stack" component={CartScreen} />
       <Stack.Screen name="Checkout_Stack" component={CheckoutScreen} />
+      <Stack.Screen name="OrderSuccess_Stack" component={OrderSuccessScreen} />
+      <Stack.Screen name="Home_Stack" component={HomeScreen} />
     </Stack.Navigator>
   );
 }
