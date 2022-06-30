@@ -695,6 +695,7 @@ export default function CategoryScreen({route, navigation}) {
   const isSearchResultPage = route.params.isSearchResultPage;
   const searchQuery = route.params.searchQuery;
   const [searchedProductList, setSeacrhedProductList] = useState([])
+  console.log('categoryid', categoryId)
 
   useEffect(() => {
     //perform search via API
