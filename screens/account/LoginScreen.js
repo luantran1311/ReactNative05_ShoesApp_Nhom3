@@ -7,25 +7,28 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
-import React, {useState} from 'react';
-import {logo} from '../../common/Images';
+import React, { useState } from 'react';
+import { logo } from '../../common/Images';
 import {
   SIZES,
   COLORS,
   FONTS,
   PRODUCT_CONTAINER_SHADOWS,
 } from '../../common/Styles';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faEnvelope,
   faLock,
   faSquareCheck,
   faSquare,
 } from '@fortawesome/free-solid-svg-icons';
-import {faSquare as regFaSquare} from '@fortawesome/free-regular-svg-icons';
-import {loginBackground} from '../../common/Images';
-import {useNavigation} from '@react-navigation/native';
+import { faSquare as regFaSquare } from '@fortawesome/free-regular-svg-icons';
+import { loginBackground } from '../../common/Images';
+import { useNavigation } from '@react-navigation/native';
 import AccountHeader from './components/AccountHeader';
+//Redux
+import { checkLogin } from './LoginThunk';
+import { useDispatch } from 'react-redux';
 
 const styles = StyleSheet.create({
   dflex: {
@@ -138,12 +141,19 @@ export default function LoginScreen() {
     setRememberMe(!rememberMe);
   }
 
+  let email = '';
+  let password = '';
+  const dispatch = useDispatch()
+  const onPressLogin = () => {
+    dispatch(checkLogin({email: email, password: password}))
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground
         source={loginBackground}
         style={styles.background__image}
-        imageStyle={{opacity: 0.25}}>
+        imageStyle={{ opacity: 0.25 }}>
         {/* form content */}
         <View style={styles.wrapper}>
           <View style={styles.logo__wrapper}>
@@ -155,7 +165,7 @@ export default function LoginScreen() {
                 style={styles.form__input__icon}
                 icon={faEnvelope}
               />
-              <TextInput style={styles.form__input__text} placeholder="Email" />
+              <TextInput style={styles.form__input__text} onChangeText={(text) => email = text} placeholder="Email" />
             </View>
             <View style={styles.form__input}>
               <FontAwesomeIcon style={styles.form__input__icon} icon={faLock} />
@@ -163,6 +173,7 @@ export default function LoginScreen() {
                 secureTextEntry={true}
                 style={styles.form__input__text}
                 placeholder="Password"
+                onChangeText={(text) => password = text}
               />
             </View>
           </View>
