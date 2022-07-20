@@ -6,9 +6,10 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
+  Animated
 } from 'react-native';
 import React, { useState } from 'react';
-import { logo } from '../../common/Images';
+import { icon_check, logo } from '../../common/Images';
 import {
   SIZES,
   COLORS,
@@ -27,8 +28,11 @@ import { loginBackground } from '../../common/Images';
 import { useNavigation } from '@react-navigation/native';
 import AccountHeader from './components/AccountHeader';
 //Redux
-import { checkLogin } from './LoginThunk';
-import { useDispatch } from 'react-redux';
+import { checkLogin, getLocalAccessToken } from './LoginThunk';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { iconCheck } from '../../common/Images';
+
 
 const styles = StyleSheet.create({
   dflex: {
@@ -134,6 +138,13 @@ const styles = StyleSheet.create({
 });
 
 export default function LoginScreen() {
+  let icon_check = iconCheck;
+  // Animation
+  const animWidthValue = new Animated.Value(100)
+  const animInter = animWidthValue.interpolate({
+    inputRange: [0, 100],
+    outputRange: ['100%', '100%']
+  })
   const navigation = useNavigation();
   const [rememberMe, setRememberMe] = useState(0);
 
@@ -141,11 +152,27 @@ export default function LoginScreen() {
     setRememberMe(!rememberMe);
   }
 
+  const accessToken = useSelector((state) => state.login.accessToken)
   let email = '';
   let password = '';
   const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getLocalAccessToken())
+    console.log(accessToken)
+    if (accessToken !== undefined && accessToken != "") {
+      Animated.timing(
+        animWidthValue,
+        {
+          toValue: 20,
+          duration: 500,
+          useNativeDriver: false
+        }
+      ).start()
+    }
+  }, [accessToken])
+
   const onPressLogin = () => {
-    dispatch(checkLogin({email: email, password: password}))
+    dispatch(checkLogin({ email: email, password: password }))
   }
 
   return (
@@ -190,11 +217,23 @@ export default function LoginScreen() {
             </TouchableOpacity>
           </View> */}
           <View style={styles.account__actions}>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => navigation.navigate('Dashboard_Stack')}>
-              <Text style={styles.btn__text}>Sign In</Text>
-            </TouchableOpacity>
+            <Animated.View
+              style={{
+                backgroundColor: '#000',
+                borderRadius: 40,
+                width: animInter
+              }}
+            >
+              <TouchableOpacity
+                style={styles.btn}
+                onPress={() => onPressLogin()}>
+                {
+                  (accessToken !== undefined && accessToken != "") ? 
+                    <Text style={styles.btn__text}>Sign In</Text> : <Image source={icon_check} style={{ width: 24, height: 24 }} /> 
+                }
+
+              </TouchableOpacity>
+            </Animated.View>
           </View>
           <View style={styles.account__actions}>
             <TouchableOpacity

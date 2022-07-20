@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { checkLogin } from './LoginThunk'
+import { checkLogin, getLocalAccessToken } from './LoginThunk'
 import { saveLocalStorage } from '../../common/LocalStorage'
 import { KEY_ACCESS_TOKEN } from '../../common/Constants'
 
@@ -22,6 +22,8 @@ const loginSlice = createSlice({
             state.accessToken = action.payload
             // lưu offline
             saveLocalStorage(KEY_ACCESS_TOKEN, action.payload)
+        }).addCase(getLocalAccessToken.fulfilled,(state,action)=> {
+            state.accessToken = action.payload
         })
     }
 })
