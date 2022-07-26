@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 export default function AccountInfo(props) {
     const navigation = useNavigation();
   const userInfo = props.userInfo;
-  console.log('user', userInfo);
+  //console.log('user', userInfo);
   return (
     <View style={styles.container}>
       <View style={styles.avatar__wrapper}>
