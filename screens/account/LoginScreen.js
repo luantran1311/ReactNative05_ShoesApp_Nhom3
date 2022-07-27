@@ -172,6 +172,7 @@ export default function LoginScreen() {
   }, [accessToken])
 
   const onPressLogin = () => {
+ 
     dispatch(checkLogin({ email: email, password: password }))
   }
 
@@ -229,7 +230,7 @@ export default function LoginScreen() {
                 onPress={() => onPressLogin()}>
                 {
                   (accessToken !== undefined && accessToken != "") ? 
-                    <Text style={styles.btn__text}>Sign In</Text> : <Image source={icon_check} style={{ width: 24, height: 24 }} /> 
+                    <Image source={icon_check} style={{ width: 24, height: 24 }} /> : <Text style={styles.btn__text}>Sign In</Text> 
                 }
 
               </TouchableOpacity>

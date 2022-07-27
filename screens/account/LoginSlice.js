@@ -15,14 +15,14 @@ const loginSlice = createSlice({
     name: 'loginSlice',
     initialState: initialState,
     reducers: {
-
+    
     },
     extraReducers: (builder) => {
         builder.addCase(checkLogin.fulfilled, (state, action) => {
             state.accessToken = action.payload
             // lưu offline
             saveLocalStorage(KEY_ACCESS_TOKEN, action.payload)
-        }).addCase(getLocalAccessToken.fulfilled,(state,action)=> {
+        }).addCase(getLocalAccessToken.fulfilled, (state, action) => {
             state.accessToken = action.payload
         })
     }
