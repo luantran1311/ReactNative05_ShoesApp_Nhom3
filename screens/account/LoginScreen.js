@@ -6,26 +6,33 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
+  Animated
 } from 'react-native';
-import React, {useState} from 'react';
-import {logo} from '../../common/Images';
+import React, { useState } from 'react';
+import { icon_check, logo } from '../../common/Images';
 import {
   SIZES,
   COLORS,
   FONTS,
   PRODUCT_CONTAINER_SHADOWS,
 } from '../../common/Styles';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faEnvelope,
   faLock,
   faSquareCheck,
   faSquare,
 } from '@fortawesome/free-solid-svg-icons';
-import {faSquare as regFaSquare} from '@fortawesome/free-regular-svg-icons';
-import {loginBackground} from '../../common/Images';
-import {useNavigation} from '@react-navigation/native';
+import { faSquare as regFaSquare } from '@fortawesome/free-regular-svg-icons';
+import { loginBackground } from '../../common/Images';
+import { useNavigation } from '@react-navigation/native';
 import AccountHeader from './components/AccountHeader';
+//Redux
+import { checkLogin, getLocalAccessToken } from './LoginThunk';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { iconCheck } from '../../common/Images';
+
 
 const styles = StyleSheet.create({
   dflex: {
@@ -131,6 +138,13 @@ const styles = StyleSheet.create({
 });
 
 export default function LoginScreen() {
+  let icon_check = iconCheck;
+  // Animation
+  const animWidthValue = new Animated.Value(100)
+  const animInter = animWidthValue.interpolate({
+    inputRange: [0, 100],
+    outputRange: ['100%', '100%']
+  })
   const navigation = useNavigation();
   const [rememberMe, setRememberMe] = useState(0);
 
@@ -138,12 +152,36 @@ export default function LoginScreen() {
     setRememberMe(!rememberMe);
   }
 
+  const accessToken = useSelector((state) => state.login.accessToken)
+  let email = '';
+  let password = '';
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getLocalAccessToken())
+    console.log(accessToken)
+    if (accessToken !== undefined && accessToken != "") {
+      Animated.timing(
+        animWidthValue,
+        {
+          toValue: 20,
+          duration: 500,
+          useNativeDriver: false
+        }
+      ).start()
+    }
+  }, [accessToken])
+
+  const onPressLogin = () => {
+ 
+    dispatch(checkLogin({ email: email, password: password }))
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground
         source={loginBackground}
         style={styles.background__image}
-        imageStyle={{opacity: 0.25}}>
+        imageStyle={{ opacity: 0.25 }}>
         {/* form content */}
         <View style={styles.wrapper}>
           <View style={styles.logo__wrapper}>
@@ -155,7 +193,7 @@ export default function LoginScreen() {
                 style={styles.form__input__icon}
                 icon={faEnvelope}
               />
-              <TextInput style={styles.form__input__text} placeholder="Email" />
+              <TextInput style={styles.form__input__text} onChangeText={(text) => email = text} placeholder="Email" />
             </View>
             <View style={styles.form__input}>
               <FontAwesomeIcon style={styles.form__input__icon} icon={faLock} />
@@ -163,6 +201,7 @@ export default function LoginScreen() {
                 secureTextEntry={true}
                 style={styles.form__input__text}
                 placeholder="Password"
+                onChangeText={(text) => password = text}
               />
             </View>
           </View>
@@ -179,11 +218,23 @@ export default function LoginScreen() {
             </TouchableOpacity>
           </View> */}
           <View style={styles.account__actions}>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => navigation.navigate('Dashboard_Stack')}>
-              <Text style={styles.btn__text}>Sign In</Text>
-            </TouchableOpacity>
+            <Animated.View
+              style={{
+                backgroundColor: '#000',
+                borderRadius: 40,
+                width: animInter
+              }}
+            >
+              <TouchableOpacity
+                style={styles.btn}
+                onPress={() => onPressLogin()}>
+                {
+                  (accessToken !== undefined && accessToken != "") ? 
+                    <Image source={icon_check} style={{ width: 24, height: 24 }} /> : <Text style={styles.btn__text}>Sign In</Text> 
+                }
+
+              </TouchableOpacity>
+            </Animated.View>
           </View>
           <View style={styles.account__actions}>
             <TouchableOpacity
