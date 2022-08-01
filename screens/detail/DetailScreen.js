@@ -6,6 +6,7 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import DetailHeader from './components/DetailHeader';
 import ProductCarousel from './components/ProductCarousel';
 import ProductSwatch from './components/ProductSwatch';
+import CartPopup from './components/CartPopup';
 
 const tempProduct = {
     "id": 1,
@@ -94,7 +95,8 @@ const tempProduct = {
 export default function DetailScreen({route, navigation}) {
   const productId = route.params.productId
   return (
-    <SafeAreaView style={{backgroundColor:'#F0F4F7', flex: 1}}>
+    <SafeAreaView style={{backgroundColor:'#F0F4F7', flex: 1, position:'relative'}}>
+      <CartPopup open={0} />
       <DetailHeader categoryName={tempProduct.categories[0].category} navigation={navigation} />
       <ProductCarousel imageList={tempProduct.image} />
       <ProductSwatch productInfo={tempProduct} />

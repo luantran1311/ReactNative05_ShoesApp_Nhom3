@@ -35,6 +35,7 @@ export default function HomeScreen({navigation}) {
           color: COLORS.white,
           fontFamily: FONTS.boldFont,
           fontSize: FONTS.h1,
+          padding: SIZES.margin
         }}>
         Athletic Shoes Collection
       </Text>

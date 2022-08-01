@@ -15,6 +15,7 @@ import {
   SIZES,
 } from '../../../common/Styles';
 import {fullStar, halfStar, emptyStar} from '../../../common/Images';
+import CartPopup from './CartPopup';
 
 function Rating({score}) {
   let stars = [];
@@ -180,15 +181,18 @@ export default function ProductSwatch(props) {
           </Text>
         </View>
 
-        <View style={{padding: SIZES.margin * 2}}>
+        <View>
           <TouchableOpacity
-            style={{backgroundColor: COLORS.primaryColor}}
+            style={{backgroundColor: COLORS.primaryColor, borderRadius: SIZES.radius}}
             onPress={() => console.log('add to bag pressed')}>
             <Text
               style={{
                 color: COLORS.white,
                 textAlign: 'center',
                 padding: SIZES.margin,
+                fontFamily: FONTS.boldFont,
+                textTransform: 'uppercase',
+                padding: SIZES.margin * 2
               }}>
               Add to bag
             </Text>

@@ -8,6 +8,7 @@ import {
 } from '../../../common/Styles';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCaretRight} from '@fortawesome/free-solid-svg-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const tempLatestProductList = [
   {
@@ -102,7 +103,11 @@ const tempLatestProductList = [
   },
 ];
 
-function renderItemList({item}) {
+function renderItemList(props) {
+
+  const {item,navigation} = props;
+  console.log('props', props)
+
   return (
     <View>
       <TouchableOpacity
@@ -112,7 +117,11 @@ function renderItemList({item}) {
           marginRight: SIZES.margin,
           borderRadius: SIZES.radius,
           ...PRODUCT_CONTAINER_SHADOWS,
-        }}>
+        }}
+        onPress={() =>
+          navigation.navigate('Detail_Stack', {productId: item.id})
+        }
+        >
         <Image style={{width: 60, height: 60}} source={{uri: item.image}} />
       </TouchableOpacity>
     </View>
@@ -120,6 +129,7 @@ function renderItemList({item}) {
 }
 
 export default function LatestShoesList() {
+  const navigation = useNavigation();
   return (
     <View>
       <View
@@ -127,6 +137,7 @@ export default function LatestShoesList() {
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
+          padding: SIZES.margin
         }}>
         <Text
           style={{
@@ -153,7 +164,7 @@ export default function LatestShoesList() {
         horizontal
         data={tempLatestProductList}
         keyExtractor={item => item.id}
-        renderItem={renderItemList}
+        renderItem={(item,navigation) => renderItemList(item,navigation)}
         showsHorizontalScrollIndicator={false}
       />
     </View>
